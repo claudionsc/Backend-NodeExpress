@@ -15,22 +15,3 @@ const getUsers = () => {//função pra pegar os usuarios
             return []//se der erro, retornar vazio
         }
 }
-
-// função para salvar o usuário. recebe uma função com parametro os dados dos usuarios
-//escrever o arquivo, filePath, transformar em json
-//add o objeto com main=s nenhum parametro
-//tabular os dados com \t
-const saveUser = (users) => fs.writeFileSync(filePath, JSON.stringify(users, null, '\t'))
-
-//função que retorna os dados dos usuários
-
-const userRoutes = (app) => {//o app vai como dependência
-    app.route('/users/:id?')//criar routa user, com id como opcional
-    .get((req, res) => {
-        const users = getUsers //ler os usuários
-
-        res.send({ users })// enia um objeto com os usuarios
-    })
-}
-
-module.exports = userRoutes
