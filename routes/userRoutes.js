@@ -37,7 +37,21 @@ const userRoutes = (app) => {//o app vai como dependência
         users.push(req.body)//inserir registros
         saveUser(users)//usar objeto atualizado e enviar pro json
 
-        res.status(201).send('OK')
+        res.status(200).send('OK')
+    })
+    .put((req, res) => {//atualizar
+        const users = getUsers()
+
+        saveUser(users.map(user => {//função map pra criar um novo obj atualizando esse
+            if (user.id === req.params.id) {//se o user id atual for igual ao parâmetro
+                return {//retorna um obj com o usuario atual mesclando os novos dados de usuarios passados
+                    ...user,
+                    ...req.body
+                }
+            }
+            return user// se não, retorna um usuário sem alterações
+        }))
+        res.status(200).send('OK')
     })
 }
 
