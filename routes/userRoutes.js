@@ -1,5 +1,5 @@
 const fs = require('fs')//lidar com arquivos file system
-const { join } = fs //lidar com pasta de arquivos
+const { join } = require('path') //lidar com pasta de arquivos
 
 const filePath = join(__dirname, 'users.json')//interação com bd, armazenar usuarios
 //junção do nome do diretorio da rota de usuários e o nome do arquivo dos usuários
