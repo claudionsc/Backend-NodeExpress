@@ -53,6 +53,13 @@ const userRoutes = (app) => {//o app vai como dependência
         }))
         res.status(200).send('OK')
     })
+    .delete((req, res) => {//deletar
+        const users = getUsers()
+
+        saveUser(users.filter(user => user.id !== req.params.id))//salva todos os users, menos o com id diferente do parâmetro
+
+        res.status(200).send('OK')
+    })
 }
 
 module.exports = userRoutes
